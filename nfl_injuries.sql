@@ -1,0 +1,9 @@
+update tblplayers set injurystatus='O' where gsis='00-0037837';
+update tblplayers set injurystatus='Q' where gsis='00-0034277';
+update tblplayers set injurystatus='Q' where gsis='00-0036280';
+update tblplayers set injurystatus='O' where gsis='00-0032399';
+update tblplayers set injurystatus='O' where gsis='00-0034829';
+update tblplayers set injurystatus='Q' where gsis='00-0033935';
+update tblplayers set injurystatus='O' where gsis='00-0034613';
+update tblplayers set injurystatus='Q' where gsis='00-0038576';
+update tblplayers set injurystatus='Q' where gsis='00-0033082';
