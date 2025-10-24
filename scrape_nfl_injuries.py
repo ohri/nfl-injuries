@@ -2,9 +2,24 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import re
+import os
 
 def scrape_nfl_injuries():
     url = "https://www.nfl.com/injuries/"
+
+    # Download players.csv if it doesn't exist
+    if not os.path.exists('players.csv'):
+        print("players.csv not found. Downloading from nflverse...")
+        players_url = "https://github.com/nflverse/nflverse-data/releases/download/players/players.csv"
+        try:
+            response = requests.get(players_url)
+            response.raise_for_status()
+            with open('players.csv', 'wb') as f:
+                f.write(response.content)
+            print("Successfully downloaded players.csv")
+        except Exception as e:
+            print(f"Failed to download players.csv: {e}")
+            print("Continuing without player data...")
 
     # Load players.csv and create a mapping from player name to gsis_id
     print("Loading players.csv...")
