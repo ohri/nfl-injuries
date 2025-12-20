@@ -22,6 +22,7 @@ def scrape_nfl_injuries():
             print("Continuing without player data...")
 
     # Load players.csv and create a mapping from player name to gsis_id
+    # Only include current players (gsis_id starts with "00-")
     print("Loading players.csv...")
     player_name_to_gsis = {}
     try:
@@ -30,9 +31,10 @@ def scrape_nfl_injuries():
             for row in reader:
                 display_name = row['display_name']
                 gsis_id = row['gsis_id']
-                if display_name and gsis_id:
+                # Filter for current players only (old players have IDs like "WIL384489")
+                if display_name and gsis_id and gsis_id.startswith('00-'):
                     player_name_to_gsis[display_name] = gsis_id
-        print(f"Loaded {len(player_name_to_gsis)} players from players.csv")
+        print(f"Loaded {len(player_name_to_gsis)} current players from players.csv")
     except FileNotFoundError:
         print("Warning: players.csv not found. GSIS IDs will be empty.")
     except Exception as e:
